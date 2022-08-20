@@ -3,12 +3,12 @@ import options from '../../options';
 import precss from './precss';
 import components from './components';
 
-async function createQuestion(quesiton) {
+export async function createQuestion(quesiton): Promise<any> {
   const result: QuestionCollection = await prompt([quesiton]);
   Object.assign(options, result);
   return Promise.resolve();
 }
-  
+
 async function createQuestions (): Promise<void> {
   await createQuestion(components)
   await createQuestion(precss)

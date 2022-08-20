@@ -8,6 +8,7 @@ interface Options {
   plugins?: string[];
   allPackages?: any[];
   precss?: 'less' | 'scss' | '';
+  templateName?: string;
 }
 
 const options: Options = {};

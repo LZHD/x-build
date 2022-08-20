@@ -2,17 +2,20 @@
 import fs = require('fs-extra');
 import chalk = require('chalk');
 import path = require('path');
-import createQuestions from './questions/creator';
+import createQuestions, { createQuestion } from './questions/creator';
 import clearConsole from './utils/clearConsole';
 import createSpawnCmd from './utils/createSpawnCmd';
 import { ejsRender } from './createTemplate';
 import options, { fetchTemplateFiles } from './options';
+import template from "./questions/creator/template";
 
 let startTime: number, endTime: number;
 
 export default async function (name: string): Promise<void> {
+  // 选择模板类型
+  await createQuestion(template);
   // CLI 模板文件夹路径
-  options.src = path.resolve(__dirname, '../template');
+  options.src = path.resolve(__dirname, `../template/${options.templateName}`);
   // 获取基础参数
   options.name = name;
   options.dest = path.resolve(process.cwd(), name);
